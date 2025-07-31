@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Color Changer</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            transition: background-color 0.5s, color 0.5s;
+        }
+        
+        .theme-btn {
+            padding: 12px 24px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
+            font-weight: bold;
+        }
+        
+        .theme-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .content {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            border-radius: 8px;
+            transition: background-color 0.5s;
+        }
+        
+        h1 {
+            margin-top: 0;
+        }
+        
+        /* Default theme (light) */
+        body.light-theme {
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        
+        .light-theme .theme-btn {
+            background-color: #4a6fa5;
+            color: white;
+        }
+        
+        .light-theme .content {
+            background-color: #ffffff;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Dark theme */
+        body.dark-theme {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        
+        .dark-theme .theme-btn {
+            background-color: #bb86fc;
+            color: #121212;
+        }
+        
+        .dark-theme .content {
+            background-color: #1e1e1e;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* Sunset theme */
+        body.sunset-theme {
+            background-color: #ff7e5f;
+            color: #2a0c00;
+        }
+        
+        .sunset-theme .theme-btn {
+            background-color: #feb47b;
+            color: #2a0c00;
+        }
+        
+        .sunset-theme .content {
+            background-color: #ffd8cb;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Ocean theme */
+        body.ocean-theme {
+            background-color: #0077b6;
+            color: #e6f7ff;
+        }
+        
+        .ocean-theme .theme-btn {
+            background-color: #00b4d8;
+            color: #001d3d;
+        }
+        
+        .ocean-theme .content {
+            background-color: #90e0ef;
+            color: #001d3d;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body class="light-theme">
+    <button class="theme-btn">Change Theme</button>
+    
+    <div class="content">
+        <h1>Theme Color Changer</h1>
+        <p>Making this kind of thing feel me amazing .</p>
+        <p>Features include:</p>
+        <ul>
+            <li>Four distinct color themes</li>
+            <li>Smooth transition animations</li>
+            <li>Theme-appropriate text contrast</li>
+            <li>Button with hover effects</li>
+            <li>Content area with theme-specific styling</li>
+        </ul>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeButton = document.querySelector('.theme-btn');
+            const body = document.body;
+            const themes = [
+                'light-theme', 
+                'dark-theme', 
+                'sunset-theme', 
+                'ocean-theme'
+            ];
+            let currentTheme = 0;
+            
+            // Theme names for button text
+            const themeNames = [
+                'Light ☀️',
+                'Dark 🌙',
+                'Sunset 🌅',
+                'Ocean 🌊'
+            ];
+            
+            // Set initial button text
+            themeButton.textContent = themeNames[currentTheme];
+            
+            themeButton.addEventListener('click', () => {
+                // Remove current theme
+                body.classList.remove(themes[currentTheme]);
+                
+                // Move to next theme (loop back to 0 after last)
+                currentTheme = (currentTheme + 1) % themes.length;
+                
+                // Apply new theme
+                body.classList.add(themes[currentTheme]);
+                
+                // Update button text with theme name and emoji
+                themeButton.textContent = themeNames[currentTheme];
+                
+                // Add animation effect to button
+                themeButton.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    themeButton.style.transform = '';
+                }, 200);
+            });
+        });
+    </script>
+</body>
+</html>
